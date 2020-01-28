@@ -1,0 +1,10 @@
+{
+  "dependencies": 
+  {
+    "express": "*"
+  }, 
+  "scipt": 
+  {
+    "start": "node index.js"
+  }
+}
