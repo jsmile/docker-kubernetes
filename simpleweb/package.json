@@ -3,7 +3,7 @@
   {
     "express": "*"
   }, 
-  "scipt": 
+  "scripts": 
   {
     "start": "node index.js"
   }
