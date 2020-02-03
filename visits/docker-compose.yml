@@ -1,0 +1,10 @@
+#communicate each other container with free access
+version: '3'
+services: 
+  redis-server: 
+    image: 'redis'
+  node-app:
+    restart: on-failure
+    build: .
+    ports: 
+      - "7071:7071"
