@@ -1,0 +1,23 @@
+sudo: required 
+services: 
+  - docker
+branches: 
+  only: 
+    - complex
+before_install: 
+  - docker build -t jsmile/complex -f ./client/Dockerfile.dev 
+script: 
+  - docker run jsmile/complex npm test -- --coverage
+after_success: 
+  - docker build jsmile/multi-client ./client 
+  - docker build jsmile/multi-nginx ./nginx 
+  - docker build jsmile/multi-server ./server 
+  - docker build jsmile/multi-worker ./worker 
+  #Login docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
+  #Login dockerCLI
+  - docker push jsmile/multi-client 
+  - docker push jsmile/multi-nginx 
+  - docker push jsmile/multi-server 
+  - docker push jsmile/multi-worker 
+
