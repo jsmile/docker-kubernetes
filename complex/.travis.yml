@@ -5,9 +5,9 @@ branches:
   only: 
     - complex
 before_install: 
-  - docker build -t jsmile/complex -f ./client/Dockerfile.dev 
+  - docker build -t jsmile/docker-kubernetes -f ./client/Dockerfile.dev 
 script: 
-  - docker run jsmile/complex npm test -- --coverage
+  - docker run jsmile/docker-kubernetes npm test -- --coverage
 after_success: 
   - docker build jsmile/multi-client ./client 
   - docker build jsmile/multi-nginx ./nginx 
