@@ -1,12 +1,11 @@
 sudo: required 
 services: 
-  - docker
-language: node_js
-before_install: 
-  - docker build -t jsmile/docker-kubernetes -f ./client/Dockerfile.dev 
+  - docker 
 branches: 
   only: 
     - complex
+before_install: 
+  - docker build -t jsmile/docker-kubernetes -f ./client/Dockerfile.dev 
 script: 
   - docker run jsmile/docker-kubernetes npm test -- --coverage
 after_success: 
