@@ -1,12 +1,11 @@
 sudo: required 
 services: 
-  - docker
-language: node_js
-before_install: 
-  - docker build -t jsmile/docker-kubernetes -f ./client/Dockerfile.dev 
+  - docker 
 branches: 
   only: 
     - complex
+before_install: 
+  - docker build -t jsmile/docker-kubernetes -f ./client/Dockerfile.dev 
 script: 
   - docker run jsmile/docker-kubernetes npm test -- --coverage
 after_success: 
@@ -14,9 +13,9 @@ after_success:
   - docker build jsmile/multi-nginx ./nginx 
   - docker build jsmile/multi-server ./server 
   - docker build jsmile/multi-worker ./worker 
-  #Login docker CLI
+  # Login docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
-  #Login dockerCLI
+  # Take those images and push them to docker hub
   - docker push jsmile/multi-client 
   - docker push jsmile/multi-nginx 
   - docker push jsmile/multi-server 
