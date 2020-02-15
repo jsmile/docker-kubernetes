@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
     - name: client
-      image: jsmile/multi-worker
+      image: jsmile/multi-client
       ports:
         - containerPort: 3000
